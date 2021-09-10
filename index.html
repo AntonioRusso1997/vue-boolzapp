@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>BoolZapp</title>
 </head>
-<body class="debug">
+<body class="">
     <div id="root" class="main-container">
         <div class="container">
             <!-- Sidebar laterale con Profilo e Contatti -->
@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     
-                    <div class="my-profile-btn">
+                    <div class="profile-btn">
                         <i class="fas fa-circle-notch"></i>
                         <i class="fas fa-comment-alt"></i>
                         <i class="fas fa-ellipsis-v"></i>
@@ -58,16 +58,37 @@
 
             <!-- Chat attiva -->
             <div class="main">
-                <div class="chat-info">
-
+                <div class="chat-header">
+                    <div class="chat-info">
+                        <img class="profile-img" src="img/avatar_1.jpg" alt="img">
+                        <div class="contact">
+                            <div>Michele</div>
+                            <p>Ultimo accesso oggi alle (data)</p>                            
+                        </div>                        
+                    </div>
+                    <div class="profile-btn">
+                        <i class="fas fa-search"></i>
+                        <i class="fas fa-paperclip"></i>
+                        <i class="fas fa-ellipsis-v"></i>
+                    </div>
                 </div>
 
                 <div class="chat-area">
+                    <div class="message-bubble contact-message">
+                        <div class="message-text">La marianna va in campagna <span><i class="fas fa-chevron-down"></i></span> </div>
+                        <p class="message-date">20/20/2020 10:10:10</p>
+                    </div>
 
+                    <div class="message-bubble my-message">
+                        <div class="message-text">Sicuro di non aver sbagliato? <span><i class="fas fa-chevron-down"></i></div>
+                        <p class="message-date">20/20/2020 10:10:10</p>
+                    </div>
                 </div>
 
                 <div class="chat-message">
-
+                    <i class="far fa-smile"></i>
+                    <input placeholder="Scrivi un messaggio" type="text" name="chat-input" id="chat-search">
+                    <i class="fas fa-microphone"></i>
                 </div>
             </div>
         </div>
