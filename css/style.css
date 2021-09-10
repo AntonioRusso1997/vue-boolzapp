@@ -37,6 +37,7 @@ body {
     padding: 10px;
     font-size: 25px;
     color: #b1b1b1;
+    cursor: pointer;
 }
 
 .profile-btn i {
@@ -256,6 +257,7 @@ body {
     color: #6b7069;
     font-size: 30px;
     margin: 35px;
+    cursor: pointer;
 }
 
 .chat-message input {

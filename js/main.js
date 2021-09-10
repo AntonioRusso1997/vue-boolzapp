@@ -6,6 +6,8 @@ const app = new Vue(
         data: {
             currentAvatar: "",
             currentContact: "",
+            sendMessage: "",
+            friendMessage:"Ciao bello",
             contacts: [
                 {
                     name: 'Michele',
@@ -87,6 +89,15 @@ const app = new Vue(
                         }
                     ],
                 },
+            ],
+            messageList : [
+                "Ehi, Ciao",
+                "Ciao bello",
+                "Ehilà, come va?",
+                "Sto nervoso lasciami stare!!!",
+                "Salve, Iscriviti a Boolean",
+                "Ciao, buon week-end!",
+                "Ciao"
             ]
 
         },
@@ -104,7 +115,38 @@ const app = new Vue(
             },
             select(index) {
                 this.currentContact = this.contacts[index];
+            },
+            newDate() {
+                const currentDate = dayjs().format('DD/MM/YYYY HH:mm:ss');
+                return currentDate
+            },
+            addMessage() {
+                if (this.sendMessage != "") {
+                    this.currentContact.messages.push({
+                        date: this.newDate(),
+                        message: this.sendMessage,
+                        status: "sent"       
+                    });
+                    this.sendMessage = "";
+                    console.log(this.sendMessage);
+                }
+                this.contactMessage()
+            },
+            contactMessage() {
+                setTimeout(function(){
+                    app.currentContact.messages.push({
+                        date: app.newDate(),
+                        message: app.randomMessage(this.messageList),
+                        status: "received"
+                    });
+                }, 1000);
+            },
+            randomMessage() {
+                return this.messageList[Math.floor(Math.random()*this.messageList.length)];
+                
             }
         }
     }
 )
+
+console.log(dayjs().format())
