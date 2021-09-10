@@ -48,7 +48,7 @@
 
                 <div class="chat-list">
                     <ul>
-                        <li v-for="(contact, index) in contacts">
+                        <li v-for="(contact, index) in contacts" @click="select(index), changeAvatar(index)">
                             <img class="profile-img" :src="ImageNumber(index)" alt="img">
                             <p>{{ contact.name }}</p>
                         </li>
@@ -60,9 +60,9 @@
             <div class="main">
                 <div class="chat-header">
                     <div class="chat-info">
-                        <img class="profile-img" src="img/avatar_1.jpg" alt="img">
+                        <img class="profile-img" :src="currentAvatar" alt="img">
                         <div class="contact">
-                            <div>Michele</div>
+                            <div>{{ currentContact.name }}</div>
                             <p>Ultimo accesso oggi alle (data)</p>                            
                         </div>                        
                     </div>
@@ -74,15 +74,11 @@
                 </div>
 
                 <div class="chat-area">
-                    <div class="message-bubble contact-message">
-                        <div class="message-text">La marianna va in campagna <span><i class="fas fa-chevron-down"></i></span> </div>
-                        <p class="message-date">20/20/2020 10:10:10</p>
+                    <div v-for="messaggio in currentContact.messages" :class="messaggio.status === 'sent' ? 'my-message' : 'contact-message'" class="message-bubble">
+                        <div class="message-text">{{ messaggio.message }} <span><i class="fas fa-chevron-down"></i></span> </div>
+                        <p class="message-date">{{messaggio.date}}</p>
                     </div>
 
-                    <div class="message-bubble my-message">
-                        <div class="message-text">Sicuro di non aver sbagliato? <span><i class="fas fa-chevron-down"></i></div>
-                        <p class="message-date">20/20/2020 10:10:10</p>
-                    </div>
                 </div>
 
                 <div class="chat-message">

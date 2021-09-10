@@ -4,6 +4,8 @@ const app = new Vue(
     {
         el: "#root",
         data: {
+            currentAvatar: "",
+            currentContact: "",
             contacts: [
                 {
                     name: 'Michele',
@@ -88,10 +90,20 @@ const app = new Vue(
             ]
 
         },
+        mounted() {
+            this.currentContact = this.contacts[0];
+            this.currentAvatar = `img/avatar${this.currentContact.avatar}.jpg`;
+        },
         methods: {
             ImageNumber(index) {
                 const image = `img/avatar${this.contacts[index].avatar}.jpg`;
                 return image
+            },
+            changeAvatar(index) {
+                this.currentAvatar = `img/avatar${this.contacts[index].avatar}.jpg`;
+            },
+            select(index) {
+                this.currentContact = this.contacts[index];
             }
         }
     }
