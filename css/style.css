@@ -3,3 +3,131 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    background: linear-gradient(to bottom, #009688 20%, #d6dbd7 20% 100%);
+}
+
+/* ----- Common ----- */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  /* ----- /Common ----- */
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.container {
+    width: 80%;
+    height: 95%;
+}
+
+/* ----- Sidebar ----- */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    float: left;
+    width: 35%;
+    height: 100%;
+    min-width: 400px;
+}
+
+.profile {
+    width: 100%;
+    height: 80px;
+}
+
+.notification {
+    width: 100%;
+    height: 90px;
+}
+
+.chat-search {
+    width: 100%;
+    height: 50px;
+}
+
+.chat-list {
+    width: 100%;
+    height: calc(100% - 220px);
+    overflow-y: scroll;
+}
+
+/* ----- /Sidebar ----- */
+
+/* ----- Main ----- */
+
+.main {
+    display: flex;
+    flex-direction: column;
+    float: left;
+    width: 65%;
+    height: 100%;
+}
+
+.chat-info {
+    width: 100%;
+    height: 80px;
+}
+
+.chat-message {
+    width: 100%;
+    height: 80px;
+}
+
+.chat-area {
+    width: 100%;
+    height: calc(100% - 160px);
+    overflow-y: scroll;
+}
+
+/* ----- /Main ----- */
+
+/* ----- DEBUG ----- */
+.debug .container {
+    background-color: rgb(231, 177, 0);
+}
+
+.debug .sidebar {
+    background-color: pink;
+}
+
+.debug .profile {
+    background-color: green;
+}
+
+.debug .notification {
+    background-color: lightskyblue;
+}
+
+.debug .chat-search {
+    background-color: lightslategrey;
+}
+
+.debug .chat-list {
+    background-color: lightsalmon;
+}
+
+.debug .main {
+    background-color: limegreen;
+}
+
+.debug .chat-info {
+    background-color: orange;
+}
+
+.debug .chat-area {
+    background-color: lightyellow;
+}
+
+.debug .chat-message {
+    background-color: mediumpurple;
+}
