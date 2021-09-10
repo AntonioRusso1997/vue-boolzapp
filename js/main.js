@@ -86,9 +86,13 @@ const app = new Vue(
                     ],
                 },
             ]
+
         },
         methods: {
-
+            ImageNumber(index) {
+                const image = `/img/avatar${this.contacts[index].avatar}.jpg`;
+                return image
+            }
         }
     }
 )

@@ -48,9 +48,9 @@
 
                 <div class="chat-list">
                     <ul>
-                        <li>
-                            <img class="profile-img" src="img/avatar_1.jpg" alt="img">
-                            <p>Michele</p>
+                        <li v-for="(contact, index) in contacts">
+                            <img class="profile-img" :src="ImageNumber(index)" alt="img">
+                            <p>{{ contact.name }}</p>
                         </li>
                     </ul>
                 </div>
