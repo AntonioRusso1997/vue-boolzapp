@@ -6,6 +6,7 @@
 
 body {
     background: linear-gradient(to bottom, #009688 20%, #d6dbd7 20% 100%);
+    font-family: 'lato', sans-serif;
 }
 
 /* ----- Common ----- */
@@ -41,24 +42,105 @@ body {
 }
 
 .profile {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
     height: 80px;
+    background-color: #eaeaea;
 }
 
+.my-profile-info {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.profile-img {
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.my-profile-btn {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-size: 25px;
+    color: #b1b1b1;
+}
+
+.my-profile-btn i {
+    margin: 0 10px;
+}
 .notification {
+    display: flex;
+    align-items: center;
     width: 100%;
     height: 90px;
+    padding: 20px;
+    background-color:#8edafc;
+}
+
+.bell {
+    font-size: 25px;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #f2fbff;
+    margin-right: 10px;
+    color: #8edafc;
+}
+
+.notification-text a {
+    color:gray;
 }
 
 .chat-search {
+    display: flex;
+    align-items: center;
+    padding: 10px;
     width: 100%;
     height: 50px;
+    background-color: #fafafa;
+}
+
+.search-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 30px;
+    font-size: 18px;
+    background-color:#ffffff;
+    color: #b7b9bc;
+}
+
+.chat-search input {
+    height: 30px;
+    width: calc(100% - 70px);
+    border: none;
+    padding-left: 10px;
+    background-color:#ffffff;
+    
 }
 
 .chat-list {
     width: 100%;
     height: calc(100% - 220px);
     overflow-y: scroll;
+    background-color: white;
+}
+
+.chat-list ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-list ul li {
+    display: flex;
+    padding: 10px;
+    font-size: 18px;
+    border-bottom: 2px solid #fafafa;
 }
 
 /* ----- /Sidebar ----- */
