@@ -7,7 +7,9 @@ const app = new Vue(
             currentAvatar: "",
             currentContact: "",
             sendMessage: "",
-            friendMessage:"Ciao bello",
+            friendMessage:"",
+            searchContact:"",
+            filtered:"",
             contacts: [
                 {
                     name: 'Michele',
@@ -142,8 +144,15 @@ const app = new Vue(
                 }, 1000);
             },
             randomMessage() {
-                return this.messageList[Math.floor(Math.random()*this.messageList.length)];
-                
+                return this.messageList[Math.floor(Math.random()*this.messageList.length)];   
+            },
+
+
+            // Funzione per ricercare (ancora non funzionante)
+            search() {
+                this.filtered = this.contacts.filter(contact => {
+                    return contact.name.toLowerCase().includes(this.searchContact.toLowerCase())
+                });
             }
         }
     }
