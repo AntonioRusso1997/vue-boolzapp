@@ -43,13 +43,13 @@
                     <div class="search-icon">
                         <i class="fas fa-search"></i>
                     </div>
-                    <input type="text" id="search" v-model="searchContact" placeholder="Cerca o inizia una nuova chat" @keyUp.enter="search">
+                    <input type="text" id="search" v-model="searchContact" placeholder="Cerca o inizia una nuova chat" @keyUp="search">
 
                 </div>
 
                 <div class="chat-list">
                     <ul>
-                        <li v-for="(contact, index) in contacts" @click="select(index), changeAvatar(index)">
+                        <li id="contatto" v-for="(contact, index) in contacts" @click="select(index), changeAvatar(index)">
                             <img class="profile-img" :src="ImageNumber(index)" alt="img">
                             <p>{{ contact.name }}</p>
                         </li>
