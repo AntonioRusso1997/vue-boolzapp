@@ -43,13 +43,13 @@
                     <div class="search-icon">
                         <i class="fas fa-search"></i>
                     </div>
-                    <input type="text" id="search" v-model="search" placeholder="Cerca o inizia una nuova chat">
+                    <input type="text" id="search" v-model="search" placeholder="Cerca o inizia una nuova chat" @keyUp="searchList">
 
                 </div>
 
                 <div class="chat-list">
                     <ul>
-                        <li id="contatto" v-for="(contact, index) in contacts" @click="select(index), changeAvatar(index)" :class="(index == currentContact) ? 'contact-active' : null">
+                        <li id="contatto" v-for="(contact, index) in filtered" @click="select(index), changeAvatar(index)" :class="(index == currentContact) ? 'contact-active' : null">
                             <img class="profile-img" :src="ImageNumber(index)" alt="img">
                             <p>{{ contact.name }}</p>
                         </li>
@@ -75,13 +75,14 @@
                 </div>
 
                 <div class="chat-area">
-                    <div v-for="messaggio in contacts[currentContact].messages" :class="messaggio.status === 'sent' ? 'my-message' : 'contact-message'" class="message-bubble">
-                        <div class="message-text">{{ messaggio.message }} <span><i class="fas fa-chevron-down"></i></span> </div>
-                        <p class="message-date">{{messaggio.date}}</p>
-                        <div class="delete-area">
-                            <p class="message-info">Message Info</p>
-                            <p class="message-delete">Delete message</p>
+                    <div v-for="(messaggio, index) in contacts[currentContact].messages" :class="messaggio.status === 'sent' ? 'my-message' : 'contact-message'" class="message-bubble">
+                        <div class="message-text arrow">{{ messaggio.message }} <span @click="dropdown(index)"><i class="fas fa-chevron-down"></i></span> 
+                            <div class="delete-area">
+                                <p class="message-info">Message Info</p>
+                                <p @click="deleteMessage(index)" class="message-delete">Delete message</p>
+                            </div>
                         </div>
+                        <p class="message-date">{{messaggio.date}}</p>
                     </div>
 
                 </div>

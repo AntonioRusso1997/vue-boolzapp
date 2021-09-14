@@ -108,10 +108,19 @@ const app = new Vue(
             this.currentContact = 0;
             this.currentAvatar = `img/avatar${this.currentContact.avatar}.jpg`;
             this.filtered = this.contacts;
+            document.addEventListener("click", function(event) {
+                const dropdowns = document.querySelectorAll(".delete-area");
+                if (event.target.classList.value != "fas fa-chevron-down") {
+                    dropdowns.forEach(element => 
+                        {
+                            element.classList.remove("display-block")
+                        })
+                }
+            })
         },
         methods: {
             ImageNumber(index) {
-                const image = `img/avatar${this.contacts[index].avatar}.jpg`;
+                const image = `img/avatar${this.filtered[index].avatar}.jpg`;
                 return image
             },
             changeAvatar(index) {
@@ -148,21 +157,22 @@ const app = new Vue(
             randomMessage() {
                 return this.messageList[Math.floor(Math.random()*this.messageList.length)];   
             },
-            // dropdown() {
-            //     this.dropdownStatus = !this.dropdownStatus;
-            // }
-
-            // Funzione per ricercare (ancora non funzionante)
-            // search() {
-            //     this.filtered = this.contacts.filter(contact => {
-            //         return contact.name.toLowerCase().includes(this.searchContact.toLowerCase())
-            //     });
-            // }
-            // searchList() {
-            //     return this.contacts.filter(contact => {
-            //       return contact.name.toLowerCase().includes(this.search.toLowerCase())
-            //     })
-            // }
+            dropdown(index) {
+                const dropdowns = document.querySelectorAll(".delete-area");
+                if (dropdowns[index].classList.contains("display-block")) {
+                    dropdowns[index].classList.remove("display-block")
+                } else {
+                    dropdowns[index].classList.add("display-block")
+                }
+            },
+            searchList() {
+                this.filtered = this.contacts.filter(contact => {
+                  return contact.name.toLowerCase().includes(this.search.toLowerCase())
+                })                
+            },
+            deleteMessage(index) {
+                this.contacts[this.currentContact].messages.splice(index,1)
+            }
         }
     },
 )
