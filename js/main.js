@@ -5,11 +5,12 @@ const app = new Vue(
         el: "#root",
         data: {
             currentAvatar: "",
-            currentContact: "",
+            currentContact: 0,
             sendMessage: "",
             friendMessage:"",
-            searchContact:"",
+            search:"",
             filtered:"",
+            dropdownStatus: false,
             contacts: [
                 {
                     name: 'Michele',
@@ -106,6 +107,7 @@ const app = new Vue(
         mounted() {
             this.currentContact = this.contacts[0];
             this.currentAvatar = `img/avatar${this.currentContact.avatar}.jpg`;
+            this.filtered = this.contacts;
         },
         methods: {
             ImageNumber(index) {
@@ -116,7 +118,7 @@ const app = new Vue(
                 this.currentAvatar = `img/avatar${this.contacts[index].avatar}.jpg`;
             },
             select(index) {
-                this.currentContact = this.contacts[index];
+                this.currentContact = index;
             },
             newDate() {
                 const currentDate = dayjs().format('DD/MM/YYYY HH:mm:ss');
@@ -146,16 +148,23 @@ const app = new Vue(
             randomMessage() {
                 return this.messageList[Math.floor(Math.random()*this.messageList.length)];   
             },
-
+            // dropdown() {
+            //     this.dropdownStatus = !this.dropdownStatus;
+            // }
 
             // Funzione per ricercare (ancora non funzionante)
-            search() {
-                this.filtered = this.contacts.filter(contact => {
-                    return contact.name.toLowerCase().includes(this.searchContact.toLowerCase())
-                });
-            }
+            // search() {
+            //     this.filtered = this.contacts.filter(contact => {
+            //         return contact.name.toLowerCase().includes(this.searchContact.toLowerCase())
+            //     });
+            // }
+            // searchList() {
+            //     return this.contacts.filter(contact => {
+            //       return contact.name.toLowerCase().includes(this.search.toLowerCase())
+            //     })
+            // }
         }
-    }
+    },
 )
 
 console.log(dayjs().format())

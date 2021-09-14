@@ -43,13 +43,13 @@
                     <div class="search-icon">
                         <i class="fas fa-search"></i>
                     </div>
-                    <input type="text" id="search" v-model="searchContact" placeholder="Cerca o inizia una nuova chat" @keyUp="search">
+                    <input type="text" id="search" v-model="search" placeholder="Cerca o inizia una nuova chat">
 
                 </div>
 
                 <div class="chat-list">
                     <ul>
-                        <li id="contatto" v-for="(contact, index) in contacts" @click="select(index), changeAvatar(index)">
+                        <li id="contatto" v-for="(contact, index) in contacts" @click="select(index), changeAvatar(index)" :class="(index == currentContact) ? 'contact-active' : null">
                             <img class="profile-img" :src="ImageNumber(index)" alt="img">
                             <p>{{ contact.name }}</p>
                         </li>
@@ -61,9 +61,9 @@
             <div class="main">
                 <div class="chat-header">
                     <div class="chat-info">
-                        <img class="profile-img" :src="currentAvatar" alt="img">
+                        <img class="profile-img" :src="`img/avatar${contacts[currentContact].avatar}.jpg`" alt="img">
                         <div class="contact">
-                            <div>{{ currentContact.name }}</div>
+                            <div>{{ contacts[currentContact].name }}</div>
                             <p>Ultimo accesso oggi alle (data)</p>                            
                         </div>                        
                     </div>
@@ -75,9 +75,13 @@
                 </div>
 
                 <div class="chat-area">
-                    <div v-for="messaggio in currentContact.messages" :class="messaggio.status === 'sent' ? 'my-message' : 'contact-message'" class="message-bubble">
+                    <div v-for="messaggio in contacts[currentContact].messages" :class="messaggio.status === 'sent' ? 'my-message' : 'contact-message'" class="message-bubble">
                         <div class="message-text">{{ messaggio.message }} <span><i class="fas fa-chevron-down"></i></span> </div>
                         <p class="message-date">{{messaggio.date}}</p>
+                        <div class="delete-area">
+                            <p class="message-info">Message Info</p>
+                            <p class="message-delete">Delete message</p>
+                        </div>
                     </div>
 
                 </div>
