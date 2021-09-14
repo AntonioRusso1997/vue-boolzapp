@@ -105,7 +105,7 @@ const app = new Vue(
 
         },
         mounted() {
-            this.currentContact = this.contacts[0];
+            this.currentContact = 0;
             this.currentAvatar = `img/avatar${this.currentContact.avatar}.jpg`;
             this.filtered = this.contacts;
         },
@@ -126,7 +126,7 @@ const app = new Vue(
             },
             addMessage() {
                 if (this.sendMessage != "") {
-                    this.currentContact.messages.push({
+                    this.contacts[this.currentContact].messages.push({
                         date: this.newDate(),
                         message: this.sendMessage,
                         status: "sent"       
@@ -138,7 +138,7 @@ const app = new Vue(
             },
             contactMessage() {
                 setTimeout(function(){
-                    app.currentContact.messages.push({
+                    app.contacts[app.currentContact].messages.push({
                         date: app.newDate(),
                         message: app.randomMessage(this.messageList),
                         status: "received"
