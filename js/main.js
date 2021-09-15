@@ -7,10 +7,8 @@ const app = new Vue(
             currentAvatar: "",
             currentContact: 0,
             sendMessage: "",
-            friendMessage:"",
             search:"",
             filtered:"",
-            dropdownStatus: false,
             contacts: [
                 {
                     name: 'Michele',
@@ -93,6 +91,7 @@ const app = new Vue(
                     ],
                 },
             ],
+            // Array di messaggi random che invierà l'interlocutore.
             messageList : [
                 "Ehi, Ciao",
                 "Ciao bello",
@@ -105,9 +104,14 @@ const app = new Vue(
 
         },
         mounted() {
+            // Per visualizzare in automatico le informazioni del primo contatto all'avvio dell'index
             this.currentContact = 0;
             this.currentAvatar = `img/avatar${this.currentContact.avatar}.jpg`;
+
+            // Per visualizzare la lista "completa" all'apertura dell'index
             this.filtered = this.contacts;
+
+            // Per far si che cliccando in qualsiasi punto dello schermo si chiuda il dropdown menu
             document.addEventListener("click", function(event) {
                 const dropdowns = document.querySelectorAll(".delete-area");
                 if (event.target.classList.value != "fas fa-chevron-down") {
@@ -119,6 +123,7 @@ const app = new Vue(
             })
         },
         methods: {
+            // Per cambiare l'indice dell'img
             ImageNumber(index) {
                 const image = `img/avatar${this.filtered[index].avatar}.jpg`;
                 return image
@@ -126,13 +131,19 @@ const app = new Vue(
             changeAvatar(index) {
                 this.currentAvatar = `img/avatar${this.contacts[index].avatar}.jpg`;
             },
+
+            //Per selezionare il contatto attivo al click
             select(index) {
                 this.currentContact = index;
             },
+
+            // Per ottenere la data attuale precisa
             newDate() {
                 const currentDate = dayjs().format('DD/MM/YYYY HH:mm:ss');
                 return currentDate
             },
+
+            // Per inviare un messaggio tramite l'imput e visualizzarlo nella chat corretta
             addMessage() {
                 let thisContact = this.contacts[this.currentContact];
                 if (this.sendMessage != "") {
@@ -145,6 +156,8 @@ const app = new Vue(
                 }
                 this.contactMessage()
             },
+
+            // Per ricevere un messaggio dopo un secondo dal  nostro invio.
             contactMessage() {
                 let thisContact = app.contacts[app.currentContact];
                 setTimeout(function(){
@@ -155,9 +168,20 @@ const app = new Vue(
                     });
                 }, 1000);
             },
+
+            //Per generare un messaggio random. (Per non ricevere solo un "ok" come risposta)
             randomMessage() {
                 return this.messageList[Math.floor(Math.random()*this.messageList.length)];   
             },
+
+              // Per ricercare i contatti nella lista contatti tramite input
+              searchList() {
+                this.filtered = this.contacts.filter(contact => {
+                  return contact.name.toLowerCase().includes(this.search.toLowerCase())
+                })                
+            },
+
+            // Per far comparire il dropdown menu al click
             dropdown(index) {
                 const dropdowns = document.querySelectorAll(".delete-area");
                 if (dropdowns[index].classList.contains("display-block")) {
@@ -166,16 +190,11 @@ const app = new Vue(
                     dropdowns[index].classList.add("display-block")
                 }
             },
-            searchList() {
-                this.filtered = this.contacts.filter(contact => {
-                  return contact.name.toLowerCase().includes(this.search.toLowerCase())
-                })                
-            },
+
+            // Per eliminare il messaggio al click su "Delete Message"
             deleteMessage(index) {
                 this.contacts[this.currentContact].messages.splice(index,1)
             }
         }
     },
 )
-
-console.log(dayjs().format())
