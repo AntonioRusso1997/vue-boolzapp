@@ -9,6 +9,7 @@ const app = new Vue(
             sendMessage: "",
             search:"",
             filtered:"",
+            notification: false,
             contacts: [
                 {
                     name: 'Michele',
@@ -120,7 +121,7 @@ const app = new Vue(
                             element.classList.remove("display-block")
                         })
                 }
-            })
+            });
         },
         methods: {
             // Per cambiare l'indice dell'img
@@ -194,6 +195,17 @@ const app = new Vue(
             // Per eliminare il messaggio al click su "Delete Message"
             deleteMessage(index) {
                 this.contacts[this.currentContact].messages.splice(index,1)
+            },
+            // Per abilitare le notifiche (fake)
+            enableNotification() {
+                this.notification = !this.notification;
+                //Per far scomparire il popup dopo 4 secondi.
+                const notifActive = document.getElementById("notif-active");
+                if(this.notification == true) {
+                    setTimeout(function(){                        
+                        notifActive.classList.remove("display-block")
+                    }, 4000);
+                }
             }
         }
     },

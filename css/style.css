@@ -14,7 +14,15 @@ body {
     content: "";
     clear: both;
     display: table;
-  }
+}
+
+.display-block {
+    display: block !important;
+}
+
+.display-none {
+    display: none !important;
+}
 
   /* ----- /Common ----- */
 
@@ -24,6 +32,7 @@ body {
     align-items: center;
     width: 100vw;
     height: 100vh;
+    position: relative;
 }
 
 .container {
@@ -127,7 +136,7 @@ body {
 
 .chat-list {
     width: 100%;
-    height: calc(100% - 220px);
+    height: calc(100%);
     overflow-y: scroll;
     background-color: white;
 }
@@ -290,6 +299,10 @@ body {
     padding: 20px;
 }
 
+.chat-message i {
+    width: 4%;
+}
+
 .delete-area {
     position: absolute;
     right: 20px;
@@ -309,8 +322,27 @@ body {
     cursor: pointer;
 }
 
-.display-block {
-    display: block;
+.notification-active {
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    position: absolute;
+    right: 30px;
+    bottom: 50px;
+    padding: 30px 40px;
+    border-radius: 15px;
+    background-color: #8edafc;
+    z-index: 999;
+    font-size: 20px;
+    color: black;
+    display: none;
+}
+
+.notification-active i {
+    font-size: 30px;
+    margin-right: 20px;
+    vertical-align: middle;
+    color: orange;
 }
 
 

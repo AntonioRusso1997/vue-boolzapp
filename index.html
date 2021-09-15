@@ -29,13 +29,13 @@
                     </div>
                 </div>
 
-                <div class="notification">
+                <div :class="notification === true ? 'display-none' : null" id="notification" class="notification">
                     <div class="bell">
                         <i class="fas fa-bell-slash"></i>
                     </div>
                     <div class="notification-text">
                         <div class="h3">Ricevi notifiche di nuovi messaggi</div>
-                        <a href="#">Attiva notifiche desktop</a>
+                        <a @click="enableNotification" href="#">Attiva notifiche desktop</a>
                     </div>
                 </div>
 
@@ -94,9 +94,13 @@
                 <div class="chat-message">
                     <i class="far fa-smile"></i>
                     <input @keyUp.enter="addMessage" v-model="sendMessage" placeholder="Scrivi un messaggio" type="text" name="chat-input" id="chat-search">
-                    <i class="fas fa-microphone"></i>
+                    <i v-show="sendMessage == ''" class="fas fa-microphone"></i>
+                    <i v-show="sendMessage != ''" @click="addMessage" class="fas fa-paper-plane"></i>
                 </div>
             </div>
+        </div>
+        <div id="notif-active" :class="notification === true ? 'display-block' : null" class="notification-active">
+            <p> <i class="fas fa-bell"> </i> Notifiche attivate</p>
         </div>
     </div>
 
