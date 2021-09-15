@@ -138,6 +138,7 @@ body {
 }
 
 .chat-list ul li {
+    position: relative;
     display: flex;
     padding: 10px;
     font-size: 18px;
@@ -151,6 +152,23 @@ body {
 
 .contact-active {
     background-color: lightgray;
+}
+
+.contact-area {
+    display: flex;
+    flex-direction: column;
+}
+
+.last-message, .last-online-date {
+    margin-top: 5px;
+    color: gray;
+    font-size: 15px;
+}
+
+.last-online-date {
+    position: absolute;
+    top: 5px;
+    right: 10px;
 }
 
 /* ----- /Sidebar ----- */

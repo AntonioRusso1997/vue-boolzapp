@@ -134,20 +134,21 @@ const app = new Vue(
                 return currentDate
             },
             addMessage() {
+                let thisContact = this.contacts[this.currentContact];
                 if (this.sendMessage != "") {
-                    this.contacts[this.currentContact].messages.push({
+                    thisContact.messages.push({
                         date: this.newDate(),
                         message: this.sendMessage,
                         status: "sent"       
                     });
                     this.sendMessage = "";
-                    console.log(this.sendMessage);
                 }
                 this.contactMessage()
             },
             contactMessage() {
+                let thisContact = app.contacts[app.currentContact];
                 setTimeout(function(){
-                    app.contacts[app.currentContact].messages.push({
+                    thisContact.messages.push({
                         date: app.newDate(),
                         message: app.randomMessage(this.messageList),
                         status: "received"

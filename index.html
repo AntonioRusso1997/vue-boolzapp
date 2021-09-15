@@ -51,7 +51,11 @@
                     <ul>
                         <li id="contatto" v-for="(contact, index) in filtered" @click="select(index), changeAvatar(index)" :class="(index == currentContact) ? 'contact-active' : null">
                             <img class="profile-img" :src="ImageNumber(index)" alt="img">
-                            <p>{{ contact.name }}</p>
+                            <div class="contact-area">
+                                <p class="contact-area-name">{{ contact.name }}</p>
+                                <p class="last-message">{{ contact.messages[contact.messages.length - 1].message }}</p>
+                                <p class="last-online-date">{{ contact.messages[contact.messages.length - 1].date }}</p>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -64,7 +68,7 @@
                         <img class="profile-img" :src="`img/avatar${contacts[currentContact].avatar}.jpg`" alt="img">
                         <div class="contact">
                             <div>{{ contacts[currentContact].name }}</div>
-                            <p>Ultimo accesso oggi alle (data)</p>                            
+                            <p>Ultimo accesso oggi alle {{ contacts[currentContact].messages[contacts[currentContact].messages.length - 1].date }}</p>                            
                         </div>                        
                     </div>
                     <div class="profile-btn">
