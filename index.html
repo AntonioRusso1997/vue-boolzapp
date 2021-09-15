@@ -53,8 +53,8 @@
                             <img class="profile-img" :src="ImageNumber(index)" alt="img">
                             <div class="contact-area">
                                 <p class="contact-area-name">{{ contact.name }}</p>
-                                <p class="last-message">{{ contact.messages[contact.messages.length - 1].message }}</p>
-                                <p class="last-online-date">{{ contact.messages[contact.messages.length - 1].date }}</p>
+                                <p v-if="contact.messages.length > 0" class="last-message">{{ contact.messages[contact.messages.length - 1].message }}</p>
+                                <p v-if="contact.messages.length > 0" class="last-online-date">{{ contact.messages[contact.messages.length - 1].date }}</p>
                             </div>
                         </li>
                     </ul>
@@ -68,7 +68,7 @@
                         <img class="profile-img" :src="`img/avatar${contacts[currentContact].avatar}.jpg`" alt="img">
                         <div class="contact">
                             <div>{{ contacts[currentContact].name }}</div>
-                            <p>Ultimo accesso oggi alle {{ contacts[currentContact].messages[contacts[currentContact].messages.length - 1].date }}</p>                            
+                            <p v-if="contacts[currentContact].messages.length > 0">Ultimo accesso oggi alle {{ contacts[currentContact].messages[contacts[currentContact].messages.length - 1].date }}</p>                            
                         </div>                        
                     </div>
                     <div class="profile-btn">
